@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tk.exam1.mapper.CustomerMapper">
-    <sql id="custom_columns">customer_id,first_name,last_name,email,address_id</sql>
+    <sql id="custom_columns">customer_id,first_name,last_name,email,address_id,active,create_date,last_update,store_id</sql>
     <select id="findCustomerByFirstNameAndLastName" resultType="com.tk.exam1.model.Customer">
         select <include refid="custom_columns"></include> from customer
         where first_name=#{first_name} and last_name=#{last_name}
     </select>
+    <select id="findCustomerById" resultType="com.tk.exam1.model.Customer">
+        select  <include refid="custom_columns"></include> from customer where customer_id=#{customer_id}
+    </select>
     <update id="updateCustomer">
-        update TABLE customer set first_name=#{first_name}, last_name=#{last_name}, email=#{email}, address_id=#{address_id} where customer_id=#{customer_id}
+        update customer set first_name=#{first_name}, last_name=#{last_name}, email=#{email}, address_id=#{address_id} where customer_id=#{customer_id}
     </update>
     <insert id="createCustomer" parameterType="com.tk.exam1.model.Customer">
         <selectKey resultType="long" keyColumn="customer_id" order="AFTER" keyProperty="customer_id">
             select last_insert_id()
         </selectKey>
-        insert into  customer (first_name, last_name, email, address_id,store_id,active) values (#{first_name}, #{last_name}, #{email}, #{address_id},#{store_id},#{active})
+        insert into  customer (first_name, last_name, email, address_id,store_id,active,create_date,last_update)
+        values (#{first_name}, #{last_name}, #{email}, #{address_id},#{store_id},#{active},#{create_date},#{last_update})
     </insert>
     <delete id="deleteCustomer">
         delete from customer where customer_id=#{customer_id}

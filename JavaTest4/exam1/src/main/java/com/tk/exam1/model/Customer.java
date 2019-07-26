@@ -1,6 +1,6 @@
 package com.tk.exam1.model;
 
-import javax.xml.ws.Service;
+import java.util.Date;
 
 public class Customer {
     private Long customer_id;
@@ -11,6 +11,44 @@ public class Customer {
     private Long  active;
     private String address;
     private  Long address_id;
+    private Date create_date;
+    private Date last_update;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customer_id=" + customer_id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", email='" + email + '\'' +
+                ", store_id=" + store_id +
+                ", active=" + active +
+                ", address='" + address + '\'' +
+                ", address_id=" + address_id +
+                ", create_date=" + create_date +
+                ", last_update=" + last_update +
+                '}';
+    }
+
+    public Date getLast_update() {
+        return last_update;
+    }
+
+    public void setLast_update(Date last_update) {
+        this.last_update = last_update;
+    }
+
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
+    }
+
+
+
+
 
     public Long getAddress_id() {
         return address_id;

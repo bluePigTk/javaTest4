@@ -6,6 +6,7 @@
         select <include refid="film_columns"></include> from film
     </select>
     <insert id="createFilm">
-        INSERT  into film (title,description,language_id) values (#{title},#{description},#{language_id})
+        INSERT  into film (title,description,language_id,rental_duration,rental_rate,replacement_cost,last_update)
+        values (#{title},#{description},#{language_id},#{rental_duration},#{rental_rate},#{replacement_cost},#{last_update})
     </insert>
 </mapper>

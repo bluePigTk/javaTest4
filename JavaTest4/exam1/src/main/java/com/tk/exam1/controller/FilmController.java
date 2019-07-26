@@ -1,6 +1,7 @@
 package com.tk.exam1.controller;
 
 import com.github.pagehelper.PageHelper;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import com.tk.exam1.model.Film;
 import com.tk.exam1.model.Page;
 import com.tk.exam1.service.FilmService;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/film")
 public class FilmController {
+
     @Autowired
     FilmService filmService;
     @PostMapping("/create")
@@ -26,9 +28,12 @@ public class FilmController {
             return new ResponseEntity<String>("出异常了",HttpStatus.EXPECTATION_FAILED);
         }
     }
-    @GetMapping("/")
+    @PostMapping("/")
     public List<Film> list(@RequestBody Page page){
-               return filmService.queryFilms(page);
+        System.out.println(page);
+        List<Film> list= filmService.queryFilms(page);
+
+              return list;
 
     }
 }

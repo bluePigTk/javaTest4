@@ -4,7 +4,16 @@ public class User {
     private String name;
     private  String password;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     public User() {
+
     }
 
     public User(String name, String password) {

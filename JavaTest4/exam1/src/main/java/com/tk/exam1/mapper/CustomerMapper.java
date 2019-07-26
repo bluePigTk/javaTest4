@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface CustomerMapper {
     Customer findCustomerByFirstNameAndLastName(Customer customer);
     void createCustomer(Customer customer);
-     void deleteCustomer(Long id);
-    Customer updateCustomer(Customer customer);
+     Long deleteCustomer(Long id);
+    void updateCustomer(Customer customer);
+    Customer findCustomerById(Long customerId);
 }

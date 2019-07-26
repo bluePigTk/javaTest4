@@ -12,6 +12,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,6 +23,7 @@ public class FilmServiceImpl implements FilmService {
     FilmMapper filmMapper;
     @Override
     public void createFilm(Film film) {
+        film.setLast_update(new Date());
         filmMapper.createFilm(film);
     }
 
@@ -30,8 +33,11 @@ public class FilmServiceImpl implements FilmService {
         List<Film> filmList = filmMapper.queryFilms();
         PageInfo<Film> pageInfo = new PageInfo<>(filmList);
         List<Film> list = pageInfo.getList();
+        ArrayList<Film> films = new ArrayList<>();
+        //list重写了toString方法
         if(list!=null){
-            logger.info("查询结果为："+list.toString());
+            films.addAll(list);
+            logger.info("查询结果为："+list);
         }
         return list;
     }

@@ -20,12 +20,17 @@ public class CustomerController {
     }
     @PostMapping("/update")
     public ResponseEntity<Customer> updateUser(@RequestBody Customer customer){
-                customerService.updateCustomer(customer);
-        return new ResponseEntity<Customer>(HttpStatus.OK);
+        Customer customer1 = customerService.updateCustomer(customer);
+        return new ResponseEntity<Customer>(customer1,HttpStatus.OK);
     }
-    @DeleteMapping("/delete/")
-    public ResponseEntity<String> deleteUser(Long id){
-            customerService.deleteCustomer(id);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable(name = "id") Long id){
+        Long updates = customerService.deleteCustomer(id);
+        if(updates==1){
             return new ResponseEntity<String>("删除成功",HttpStatus.OK);
+        }else {
+            return new ResponseEntity<String>("不存在该用户",HttpStatus.OK);
+        }
+
     }
 }

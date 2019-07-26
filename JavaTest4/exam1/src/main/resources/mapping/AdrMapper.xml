@@ -5,5 +5,7 @@
     <select id="findAddressIdByAdress" resultType="long" parameterType="String">
         select address_id from address where address=#{address}
     </select>
-
+    <select id="findAdressByAdressId" resultType="string">
+       select  address from address where  address_id=#{address_id}
+    </select>
 </mapper>

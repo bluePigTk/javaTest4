@@ -15,6 +15,7 @@ public class UserServiceImpl implements Userservice {
     CustomerMapper customerMapper;
     @Override
     public String login(User user) {
+
         Customer customer = new Customer();
         customer.setFirst_name(user.getName());
         customer.setLast_name(user.getPassword());
